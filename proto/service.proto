@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "/grpc;grpc";
+
+service RedisProxy {
+  rpc get (RedisRequest) returns (RedisReply) {}
+  rpc set (RedisSetRequest) returns (RedisReply) {}
+}
+
+message RedisRequest {
+  string key = 1;
+}
+
+message RedisSetRequest {
+  string key = 1;
+  string value = 2;
+  int32 duration_in_second = 3;
+}
+
+message RedisReply {
+  string value = 1;
+  string status = 2;
+}
